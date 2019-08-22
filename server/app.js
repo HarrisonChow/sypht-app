@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var uploadFile = require("./routes/uploadFile");
 var resultRouter = require("./routes/result");
 var oauthRouter = require("./routes/oauth");
+var abnRouter = require("./routes/abn");
 var app = express();
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/upload", uploadFile);
 app.use("/oauth", oauthRouter);
+app.use("/abn", abnRouter);
 app.use("/result", resultRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

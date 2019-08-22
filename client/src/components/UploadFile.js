@@ -1,17 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Upload, Button, Icon, message } from 'antd';
 import FormData from 'form-data';
 
 const axios = require("axios");
-
-
-const fileList = [];
-
-const props = {
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  listType: 'picture',
-  defaultFileList: [...fileList],
-};
 
 export default class UploadFile extends React.Component {
     constructor(props) {
@@ -62,9 +53,7 @@ export default class UploadFile extends React.Component {
                   fileList: [],
                   uploading: false,
                 });
-
                 this.fetchResult(response.data.fileId);
-
                 message.success('upload successfully.');
             }).catch((error) => {
               this.setState({
@@ -86,12 +75,11 @@ export default class UploadFile extends React.Component {
       };
       axios.post("http://localhost:8888/result",config)
           .then((response) => {
-            console.log(response);
             this.props.handler(response.data);
-
-            message.success('upload successfully.')
+            message.success('result fetching successfully.')
           }).catch((error) => {
-            message.error('upload failed.')
+            console.log(error);
+            message.error('result fetching failed.')
       });
     }
 
@@ -112,14 +100,13 @@ export default class UploadFile extends React.Component {
             this.setState(state => ({
               fileList: [...state.fileList, file],
             }));
-            console.log(this.state);
             return false;
           },
           fileList,
         };
         return (
-          <div>
-            <Upload {...props}>
+          <div class="upload-pannel">
+            <Upload {...props} >
               <Button>
                 <Icon type="upload" /> Select File
               </Button>
