@@ -1,10 +1,7 @@
 var express = require("express");
 var router = express.Router();
-
-var multer = require('multer');
 var path = require('path');
 var request = require('request-promise');
-var fs = require('fs');
 
 router.post('/',function(req,res,next){
   const options = {
